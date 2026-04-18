@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar card">
+        <div class="profile-wrap">
+          <div class="avatar">MQ</div>
+          <div class="identity-block">
+            <h1 id="username">Mindful Quester</h1>
+            <div class="level-chip">Lv. <span id="level-value">1</span></div>
+            <div class="stats-stack">
+              <div class="health-section">
+                <div class="xp-meta">
+                  <span>Health</span>
+                  <span id="health-value">100 / 100</span>
+                </div>
+                <div class="xp-track health-track">
+                  <div id="health-fill" class="health-fill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header-xp xp-section">
+          <div class="xp-meta">
+            <span>XP</span>
+            <span id="xp-value">0 / 100</span>
+          </div>
+          <div class="xp-track">
+            <div id="xp-fill" class="xp-fill"></div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section id="home-page" class="page active">
+          <div class="main-grid">
+            <section class="task-panel card">
+              <div class="task-header">
+                <div class="segmented-control">
+                  <button class="tab-btn active" data-view="todo">To-Do List</button>
+                  <button class="tab-btn" data-view="daily">Daily Tasks</button>
+                </div>
+                <button id="new-task-btn" class="btn-primary">+ New Task</button>
+              </div>
+
+              <p id="task-subtitle" class="panel-subtitle"></p>
+              <div id="task-list" class="task-list"></div>
+            </section>
+
+            <aside class="calendar-panel card">
+              <div class="calendar-header">
+                <h2>Calendar</h2>
+                <button id="calendar-mode-btn" class="btn-ghost">Progress View</button>
+              </div>
+              <div id="calendar-meta" class="calendar-meta"></div>
+              <div id="calendar-grid" class="calendar-grid"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="dragon-page" class="page card">
+          <div class="page-top">
+            <h2>Dragon Tab</h2>
+            <p class="panel-subtitle">Your companion grows as your consistency improves.</p>
+          </div>
+          <div class="dragon-layout">
+            <div class="dragon-placeholder">
+              <div class="dragon-image">🐉</div>
+              <p>Companion Placeholder</p>
+            </div>
+            <div class="dragon-stats">
+              <div class="stat-row">
+                <span>Pet XP</span>
+                <strong id="pet-xp-value">0 / 100</strong>
+              </div>
+              <div class="xp-track pet-track">
+                <div id="pet-xp-fill" class="xp-fill pet-fill"></div>
+              </div>
+              <div class="pet-pill-row">
+                <span class="pill stat-pill">Health: <b id="pet-health">5</b> ❤️</span>
+                <span class="pill stat-pill">Hunger: <b id="pet-hunger">0</b></span>
+                <span class="pill stat-pill">Weakness: <b id="pet-weakness">0</b></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="friends-page" class="page card">
+          <div class="page-top">
+            <h2>Friends Tab</h2>
+            <p class="panel-subtitle">
+              Placeholder for future classroom leaderboard, competitions, and progress sharing.
+            </p>
+          </div>
+        </section>
+
+        <section id="settings-page" class="page card">
+          <div class="page-top">
+            <h2>Settings</h2>
+            <p class="panel-subtitle">Keep controls simple and focused.</p>
+          </div>
+          <div class="settings-row">
+            <span>Theme</span>
+            <button id="theme-toggle-btn" class="btn-ghost">Switch to Dark</button>
+          </div>
+          <div class="settings-row muted-row">More settings coming soon.</div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer-nav card">
+      <button class="nav-btn active" data-page="home-page">🏠 <span>Home</span></button>
+      <button class="nav-btn" data-page="dragon-page">🐉 <span>Dragon</span></button>
+      <a
+        class="nav-btn center-nav"
+        href="https://auf.instructure.com/login/canvas"
+        target="_blank"
+        rel="noreferrer"
+      >
+        🎯 <span>Canvas</span>
+      </a>
+      <button class="nav-btn" data-page="friends-page">👥 <span>Friends</span></button>
+      <button class="nav-btn" data-page="settings-page">⚙️ <span>Settings</span></button>
+    </footer>
+
+    <dialog id="task-modal" class="task-modal">
+      <form id="task-form" class="task-form" method="dialog">
+        <div class="modal-top">
+          <h3 id="modal-title">Add Task</h3>
+          <button type="button" id="close-modal-btn" class="icon-btn" aria-label="Close">
+            ✕
+          </button>
+        </div>
+
+        <label>
+          Title
+          <input id="task-title-input" name="title" required maxlength="80" />
+        </label>
+
+        <label>
+          Difficulty
+          <select id="difficulty-input" name="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+
+        <label id="due-date-wrapper">
+          Due date
+          <input id="due-date-input" type="date" name="dueDate" />
+        </label>
+
+        <div class="form-actions">
+          <button type="button" id="cancel-btn" class="btn-ghost">Cancel</button>
+          <button type="submit" class="btn-primary">Save Task</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
