@@ -1,4 +1,4 @@
-# DragonDrop by DevWorx 2026 
+# DragonDrop by DevWorx 2030
 ### Student-centric productivity dashboard with RPG progression and a pixel-art soul.
 
 DragonDrop is a gamified task management system engineered for the specific workflow of students and developers. By merging a traditional time-block planner with RPG-style growth mechanics, the platform transforms the academic grind into a structured quest for consistency.
